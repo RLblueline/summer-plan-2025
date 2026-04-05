@@ -11,7 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        perplexity: {
+                        pplx: {
                             bg: '#ffffff',
                             sidebar: '#f3f3ee',
                             accent: '#1d9bf0',
@@ -31,148 +31,330 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; scroll-behavior: smooth; }
         .sidebar { background-color: #f3f3ee; border-right: 1px solid #e5e7eb; }
-        .checkbox-custom:checked { background-color: #1a948e; border-color: #1a948e; }
         .nav-item:hover { background-color: #e5e7eb; }
-        .nav-item.active { background-color: #e5e7eb; font-weight: 600; }
+        .nav-item.active { background-color: #e5e7eb; font-weight: 600; color: #1a948e; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        .step-item { @apply flex items-start gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors border border-transparent hover:border-gray-100; }
+        .day-badge { @apply px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase; }
+        .tip-card { @apply bg-pplx-teal text-white p-8 rounded-[32px] shadow-lg shadow-pplx-teal/20; }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden">
-    <!-- Sidebar -->
-    <aside class="w-64 sidebar flex flex-col hidden md:flex">
-        <div class="p-6">
-            <h1 class="text-xl font-bold flex items-center gap-2">
-                <span class="text-perplexity-teal">●</span> Roadmap
-            </h1>
+    <!-- Sidebar Navigation -->
+    <aside class="w-72 sidebar flex flex-col hidden md:flex">
+        <div class="p-8">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-8 h-8 bg-pplx-teal rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h1 class="text-xl font-bold tracking-tight">SUMMER '25</h1>
+            </div>
+            <nav class="space-y-1 overflow-y-auto max-h-[calc(100vh-250px)]">
+                <a href="#week1" class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all">
+                    <span class="w-6 text-center font-mono opacity-40">01</span> Hardware Basics
+                </a>
+                <a href="#week2" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
+                    <span class="w-6 text-center font-mono opacity-40">02</span> Python & Math
+                </a>
+                <a href="#week3" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
+                    <span class="w-6 text-center font-mono opacity-40">03</span> Computer Vision
+                </a>
+                <a href="#week4" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
+                    <span class="w-6 text-center font-mono opacity-40">04</span> Machine Learning
+                </a>
+                <a href="#week5" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
+                    <span class="w-6 text-center font-mono opacity-40">05</span> Embedded Control
+                </a>
+                <a href="#week6" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
+                    <span class="w-6 text-center font-mono opacity-40">06</span> Neural Networks
+                </a>
+                <a href="#week7" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
+                    <span class="w-6 text-center font-mono opacity-40">07</span> Flagship Project
+                </a>
+                <a href="#week8" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
+                    <span class="w-6 text-center font-mono opacity-40">08</span> Shipping/UT Prep
+                </a>
+            </nav>
         </div>
-        <nav class="flex-1 px-3 space-y-1">
-            <a href="#setup" class="nav-item active flex items-center px-3 py-2 text-sm rounded-lg">Setup & Foundations</a>
-            <a href="#phase1" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Phase 1: Robotics</a>
-            <a href="#phase2" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Phase 2: AI & ML</a>
-            <a href="#phase3" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Phase 3: Flagship</a>
-            <a href="#portfolio" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Portfolio & Beyond</a>
-        </nav>
-        <div class="p-6 border-t border-gray-200">
-            <div class="text-xs text-gray-500 font-mono">EST. START: JUNE 14, 2025</div>
+        <div class="mt-auto p-8">
+            <div class="bg-white/50 border border-gray-200 rounded-2xl p-4">
+                <p class="text-[10px] text-gray-400 font-mono uppercase mb-1">Status</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 bg-pplx-teal rounded-full"></div>
+                    <p class="text-xs font-bold">READY FOR JUNE 14</p>
+                </div>
+            </div>
         </div>
     </aside>
 
-    <!-- Main Content -->
-    <main class="flex-1 overflow-y-auto bg-white p-8 md:p-12">
-        <div class="max-w-3xl mx-auto">
-            <header class="mb-12">
-                <div class="text-perplexity-teal font-mono text-sm mb-2 uppercase tracking-widest">Engineering Intensive</div>
-                <h2 class="text-4xl font-bold mb-4">Summer Plan: AI & Robotics</h2>
-                <p class="text-lg text-gray-600 leading-relaxed">A focused 4-5 hour morning routine to master embedded systems, machine learning, and hardware-software integration.</p>
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto bg-white relative">
+        <div class="max-w-4xl mx-auto px-8 pt-16 pb-32">
+            
+            <header class="mb-20">
+                <h2 class="text-5xl font-black tracking-tighter mb-4 text-pplx-teal">Engineering Roadmap</h2>
+                <p class="text-gray-500 text-lg max-w-2xl leading-relaxed">4-5 hours every morning. A summer of building, breaking, and shipping AI-powered robotics.</p>
             </header>
 
-            <!-- Daily Routine -->
-            <section class="mb-16">
-                <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-perplexity-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    The Morning Block (4.5 Hours)
-                </h3>
+            <!-- Week 1: Hardware -->
+            <section id="week1" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight">Week 1: Hardware Foundations</h3>
+                    <span class="day-badge bg-pplx-teal text-white">JUNE 14 - JUNE 20</span>
+                </div>
+                <div class="space-y-6">
+                    <div class="p-8 border-4 border-slate-50 rounded-[40px] bg-slate-50/30">
+                        <div class="space-y-2 mb-8">
+                            <h4 class="text-xl font-bold">Daily Breakdown</h4>
+                            <p class="text-sm text-gray-500 italic">Focus: Electronics, Soldering, and PWM control.</p>
+                        </div>
+                        <div class="grid gap-2">
+                            <div class="step-item">
+                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                                <div><p class="font-bold">Sat/Sun: Components Audit</p><p class="text-sm text-gray-500">Inventory your Arduino/Pi. Order a 3D-printed arm kit or SG90 servos.</p></div>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                                <div><p class="font-bold">Mon: Linux Orchestration</p><p class="text-sm text-gray-500">Flash Linux Mint. Setup Bash aliases for robotics dev. Install VS Code.</p></div>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                                <div><p class="font-bold">Tue: Serial Communication</p><p class="text-sm text-gray-500">Send "Hello" from Arduino to PC. Learn Baud rates and Buffer handling.</p></div>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                                <div><p class="font-bold">Wed: Motor Dynamics</p><p class="text-sm text-gray-500">PWM sweep on SG90 servos. Measure current draw. Add capacitors to stabilize.</p></div>
+                            </div>
+                            <div class="step-item">
+                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                                <div><p class="font-bold">Thu-Fri: Sensor Integration</p><p class="text-sm text-gray-500">HC-SR04 Ultrasonic sensor integration. Make servo track your hand distance.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <h5 class="font-bold text-lg mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            The Pro Tip
+                        </h5>
+                        <p class="text-sm opacity-90 leading-relaxed">Always use a separate power supply for motors (e.g., a 4xAA battery pack). Drawing motor current through an Arduino or Pi is the #1 way to kill your board on Day 3.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Week 2: Math -->
+            <section id="week2" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight">Week 2: Engineering Python & Math</h3>
+                    <span class="day-badge bg-gray-100 text-gray-400">JUNE 21 - JUNE 27</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-8 border border-gray-100 rounded-[32px] bg-white hover:bg-slate-50 transition-all">
+                        <h4 class="font-bold mb-4">The Syllabus</h4>
+                        <ul class="space-y-3 text-sm text-gray-600">
+                            <li class="flex items-center gap-2"><div class=\"w-1.5 h-1.5 bg-pplx-teal rounded-full\"></div> NumPy: Matrices are everything</li>
+                            <li class="flex items-center gap-2"><div class=\"w-1.5 h-1.5 bg-pplx-teal rounded-full\"></div> OOP: Class-based Robot control</li>
+                            <li class="flex items-center gap-2"><div class=\"w-1.5 h-1.5 bg-pplx-teal rounded-full\"></div> Calculus: The logic of Gradients</li>
+                        </ul>
+                    </div>
+                    <div class="p-8 border border-gray-100 rounded-[32px] bg-white hover:bg-slate-50 transition-all">
+                        <h4 class="font-bold mb-4">Milestone</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed">By Friday, you should be able to write a script that calculates a 3D coordinate from three joint angles using a rotation matrix.</p>
+                    </div>
+                </div>
+                <div class="tip-card bg-gray-900 shadow-gray-900/20">
+                    <h5 class="font-bold text-lg mb-2">Math Secret</h5>
+                    <p class="text-sm opacity-80">Don't memorize formulas. Understand <strong>Coordinate Frames</strong>. If you can track where a frame is relative to another, you can control any robot.</p>
+                </div>
+            </section>
+
+            <!-- Week 3: CV -->
+            <section id="week3" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight">Week 3: Computer Vision (OpenCV)</h3>
+                    <span class="day-badge bg-pplx-teal text-white">JUNE 28 - JULY 4</span>
+                </div>
                 <div class="space-y-4">
-                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">08:30</div>
-                        <div>
-                            <div class="font-bold">Math Foundation (45m)</div>
-                            <p class="text-sm text-gray-500">Algebra II cleanup (June) → Precalculus (July/Aug). Focus: Trig & Vectors.</p>
-                        </div>
+                    <div class="step-item bg-slate-50/50">
+                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                        <div><p class="font-bold">Color Masking Mastery</p><p class="text-sm text-gray-500">Learn HSV vs RGB. Create a script that isolates a bright red block from a video feed.</p></div>
                     </div>
-                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">09:15</div>
-                        <div>
-                            <div class="font-bold">CS Core (45m)</div>
-                            <p class="text-sm text-gray-500">Python fundamentals, Numpy/Pandas. C/C++ for robotics firmware (Thursdays).</p>
-                        </div>
+                    <div class="step-item bg-slate-50/50">
+                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                        <div><p class="font-bold">Contour Detection</p><p class="text-sm text-gray-500">Find the centroid (cx, cy) of the block. Draw a bounding box around it in real-time.</p></div>
                     </div>
-                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">10:15</div>
-                        <div>
-                            <div class="font-bold">Deep Work: Project Build (1h 45m)</div>
-                            <p class="text-sm text-gray-500">Active engineering, wiring, training models, and debugging.</p>
-                        </div>
+                    <div class="step-item bg-slate-50/50">
+                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                        <div><p class="font-bold">Coordinate Mapping</p><p class="text-sm text-gray-500">Translate 640x480 pixels to centimeters on your desk. This is the CV-to-Robot bridge.</p></div>
                     </div>
-                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">12:00</div>
+                </div>
+            </section>
+
+            <!-- Week 4: ML -->
+            <section id="week4" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight">Week 4: Machine Learning foundations</h3>
+                    <span class="day-badge bg-gray-100 text-gray-400">JULY 5 - JULY 11</span>
+                </div>
+                <div class="p-10 border border-gray-100 rounded-[40px] bg-slate-50/20">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                         <div>
-                            <div class="font-bold">Ship & Logs (30m)</div>
-                            <p class="text-sm text-gray-500">Documentation, GitHub commits, and recording short demo clips.</p>
+                            <h4 class="font-bold text-lg mb-4">Framework: Scikit-Learn</h4>
+                            <p class="text-sm text-gray-500 leading-relaxed mb-6">Train your first model. Regression and Random Forests are the bread and butter of engineering ML.</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2 text-xs"><div class=\"w-2 h-2 border border-pplx-teal rounded-full\"></div> Feature Scaling</div>
+                                <div class="flex items-center gap-2 text-xs"><div class=\"w-2 h-2 border border-pplx-teal rounded-full\"></div> Train-Test Split</div>
+                                <div class="flex items-center gap-2 text-xs"><div class=\"w-2 h-2 border border-pplx-teal rounded-full\"></div> Cross Validation</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                            <h5 class="text-xs font-mono uppercase text-gray-400 mb-4">Weekly Lab</h5>
+                            <p class="text-sm font-bold mb-2">The \"Robot Health\" Predictor</p>
+                            <p class="text-xs text-gray-500 leading-relaxed">Simulate a dataset of motor temperature vs. load. Train a model to predict if a motor will fail within 1 hour.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Phase 1 -->
-            <section id="phase1" class="mb-16">
-                <h3 class="text-2xl font-bold mb-6">Phase 1: Robotics & Embedded (June 14 - July 11)</h3>
-                <div class="space-y-8">
-                    <div class="border-l-2 border-perplexity-teal pl-6 py-2">
-                        <h4 class="font-bold text-lg mb-2">Weeks 1-2: Intermediate Autonomous Bot</h4>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Order/Inventory parts (Arduino/Pi, Motor Drivers, Sensors)</li>
-                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Assemble chassis and wiring</li>
-                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Implement PID control for line following</li>
-                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Final Test: Obstacle avoidance logic</li>
-                        </ul>
+            <!-- Week 5: Embedded Control -->
+            <section id="week5" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight">Week 5: Embedded Intelligence</h3>
+                    <span class="day-badge bg-pplx-teal text-white">JULY 12 - JULY 18</span>
+                </div>
+                <div class="space-y-6">
+                    <div class="step-item border border-gray-100">
+                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                        <div><p class="font-bold">PID Control Loops</p><p class="text-sm text-gray-500">Implement a Proportional-Integral-Derivative controller for smooth servo movement. No more jerky starts.</p></div>
                     </div>
-                    <div class="border-l-2 border-perplexity-teal pl-6 py-2">
-                        <h4 class="font-bold text-lg mb-2">Weeks 3-4: The Showpiece Build</h4>
-                        <p class="text-sm text-gray-500 mb-4 italic">Recommended: Self-balancing bot or Robotic Arm with Kinematics.</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> CAD frame (Fusion 360) / 3D Print components</li>
-                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Integration of IMU/Gyro sensors</li>
-                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Tuning software loops for stability</li>
-                        </ul>
+                    <div class="step-item border border-gray-100">
+                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
+                        <div><p class="font-bold">Socket Programming</p><p class="text-sm text-gray-500">Control your Arduino from a Python script via Wi-Fi (ESP32) or USB Serial.</p></div>
                     </div>
                 </div>
             </section>
 
-            <!-- Phase 2 -->
-            <section id="phase2" class="mb-16">
-                <h3 class="text-2xl font-bold mb-6">Phase 2: AI & ML Intensive (July 12 - Aug 10)</h3>
-                <div class="bg-perplexity-sidebar p-6 rounded-2xl border border-perplexity-border">
-                    <h4 class="font-bold text-lg mb-4">ML Curriculum</h4>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <div class="p-4 bg-white rounded-xl border border-gray-100">
-                            <div class="font-bold text-perplexity-teal mb-1">Fundamentals</div>
-                            <p class="text-sm text-gray-500">Regression, Decision Trees, Scikit-learn, Feature Engineering.</p>
+            <!-- Week 6: Deep Learning -->
+            <section id="week6" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight">Week 6: Neural Networks (PyTorch)</h3>
+                    <span class="day-badge bg-gray-100 text-gray-400">JULY 19 - JULY 25</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-slate-50 border border-gray-100 rounded-2xl text-center">
+                        <div class="font-bold text-xl mb-1">PyTorch</div>
+                        <div class="text-[10px] uppercase text-gray-400">Framework</div>
+                        <p class="text-xs mt-3 text-gray-500">Learn Tensors and Autograd. The core of modern AI.</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 border border-gray-100 rounded-2xl text-center">
+                        <div class="font-bold text-xl mb-1">CNNs</div>
+                        <div class="text-[10px] uppercase text-gray-400">Architecture</div>
+                        <p class="text-xs mt-3 text-gray-500">How AI \"sees\" layers of patterns. Build a digit classifier.</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 border border-gray-100 rounded-2xl text-center">
+                        <div class="font-bold text-xl mb-1">Transfer</div>
+                        <div class="text-[10px] uppercase text-gray-400">Technique</div>
+                        <p class="text-xs mt-3 text-gray-500">Use pre-trained models (YOLO) to detect your specific tools.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Week 7: Flagship Project -->
+            <section id="week7" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight text-pplx-teal">Week 7: The Master Integration</h3>
+                    <span class="day-badge bg-pplx-teal text-white">JULY 26 - AUG 1</span>
+                </div>
+                <div class="p-10 border-4 border-pplx-teal rounded-[40px] bg-pplx-teal/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-10">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black mb-6">The \"Bridge\" Project</h4>
+                    <p class="text-gray-600 mb-10 leading-relaxed text-lg">Your flagship project: A CV-driven system where a camera detects a block, calculates coordinates, and the robotic arm picks it up autonomously.</p>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <div class="font-bold mb-2">1. Detection</div>
+                            <p class="text-xs text-gray-500 leading-normal">HSV masking to centroid (cx, cy).</p>
                         </div>
-                        <div class="p-4 bg-white rounded-xl border border-gray-100">
-                            <div class="font-bold text-perplexity-teal mb-1">Computer Vision</div>
-                            <p class="text-sm text-gray-500">OpenCV, Object Detection, Yolo/Haar Cascades for robotics integration.</p>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <div class="font-bold mb-2">2. Kinematics</div>
+                            <p class="text-xs text-gray-500 leading-normal">Solve the inverse trig for joint angles.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                            <div class="font-bold mb-2">3. Actuation</div>
+                            <p class="text-xs text-gray-500 leading-normal">Command servos to the XYZ point.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Final Packaging -->
-            <section id="portfolio" class="mb-16">
-                <h3 class="text-2xl font-bold mb-6">Portfolio Packaging (Final Week)</h3>
-                <div class="p-6 border border-perplexity-teal rounded-2xl bg-perplexity-teal/5">
-                    <p class="text-gray-700 mb-4 font-medium">Final Deliverables to build your profile for UT Austin / Internships:</p>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 rounded-full bg-perplexity-teal"></div>
-                            <span class="text-gray-700">Clean GitHub Repos with proper READMEs</span>
+            <!-- Week 8: Shipping -->
+            <section id="week8" class="mb-32">
+                <div class="flex items-center justify-between mb-10">
+                    <h3 class="text-3xl font-black tracking-tight">Week 8: Shipping & UT Austin Prep</h3>
+                    <span class="day-badge bg-gray-900 text-white">AUG 2 - AUG 8</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-8 border border-gray-200 rounded-3xl hover:bg-slate-50 transition-all">
+                        <h4 class="font-bold text-xl mb-4 text-pplx-teal">README Excellence</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">Every project needs a GIF of it working, a circuit diagram (Fritzing), and a \"Lessons Learned\" section. This is your portfolio's front door.</p>
+                        <div class="flex gap-2">
+                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">portfolio</span>
+                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">documentation</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 rounded-full bg-perplexity-teal"></div>
-                            <span class="text-gray-700">30-second "Technical Summary" videos per project</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-2 h-2 rounded-full bg-perplexity-teal"></div>
-                            <span class="text-gray-700">Simple Personal Portfolio site (Static HTML/Vercel)</span>
+                    </div>
+                    <div class="p-8 border border-gray-200 rounded-3xl hover:bg-slate-50 transition-all">
+                        <h4 class="font-bold text-xl mb-4 text-pplx-teal">The \"Demo\" Reel</h4>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">Record a 90-second technical breakdown. Explain your PID logic or CV math. This is gold for college/internship apps.</p>
+                        <div class="flex gap-2">
+                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">ut-austin-prep</span>
+                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">resume-builder</span>
                         </div>
                     </div>
                 </div>
             </section>
+
         </div>
     </main>
+
+    <!-- Footer Progress -->
+    <footer class="fixed bottom-0 right-0 p-8 z-50">
+        <div class="bg-white/90 backdrop-blur border border-gray-200 shadow-2xl rounded-2xl px-6 py-4 flex items-center gap-6">
+            <div class="flex -space-x-2">
+                <div class="w-6 h-6 rounded-full bg-pplx-teal border-2 border-white"></div>
+                <div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white"></div>
+                <div class="w-6 h-6 rounded-full bg-slate-100 border-2 border-white"></div>
+            </div>
+            <div class="text-[10px] font-mono uppercase tracking-widest text-gray-400">Progress: <span class="text-black font-bold">Planning Phase</span></div>
+            <div class="h-4 w-px bg-gray-200"></div>
+            <div class="text-[10px] font-mono text-gray-400">© 2025 ENGINEERING INTENSIVE</div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth highlighting for sidebar
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
