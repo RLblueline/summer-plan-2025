@@ -3,358 +3,1009 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summer Engineering Roadmap 2025</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        pplx: {
-                            bg: '#ffffff',
-                            sidebar: '#f3f3ee',
-                            accent: '#1d9bf0',
-                            text: '#1a1a1a',
-                            subtle: '#6b7280',
-                            card: '#ffffff',
-                            border: '#e5e7eb',
-                            teal: '#1a948e'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
+    <meta name="description" content="Ultra-detailed summer engineering plan with exact daily tasks, math topics, Python topics, software, parts, repos, and deliverables.">
+    <title>Summer Engineering Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; scroll-behavior: smooth; }
-        .sidebar { background-color: #f3f3ee; border-right: 1px solid #e5e7eb; }
-        .nav-item:hover { background-color: #e5e7eb; }
-        .nav-item.active { background-color: #e5e7eb; font-weight: 600; color: #1a948e; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
-        .step-item { @apply flex items-start gap-4 p-4 rounded-2xl hover:bg-slate-50 transition-colors border border-transparent hover:border-gray-100; }
-        .day-badge { @apply px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase; }
-        .tip-card { @apply bg-pplx-teal text-white p-8 rounded-[32px] shadow-lg shadow-pplx-teal/20; }
+        :root, [data-theme="light"] {
+            --text-xs: clamp(0.75rem, 0.72rem + 0.16vw, 0.86rem);
+            --text-sm: clamp(0.88rem, 0.82rem + 0.2vw, 1rem);
+            --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+            --text-lg: clamp(1.15rem, 1.04rem + 0.45vw, 1.4rem);
+            --text-xl: clamp(1.6rem, 1.2rem + 1vw, 2.25rem);
+            --text-2xl: clamp(2rem, 1.35rem + 2vw, 3.4rem);
+
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.25rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-10: 2.5rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+
+            --bg: #f7f7f3;
+            --surface: #fbfbf8;
+            --surface-2: #f1f3ee;
+            --steel: #e3e7df;
+            --border: #d9dfd4;
+            --line: #e6ebe3;
+            --text: #1f2937;
+            --muted: #5f6b66;
+            --teal: #20808d;
+            --teal-deep: #165a64;
+            --teal-soft: #d9ecec;
+            --nav: #fbfbf8;
+            --nav-2: #f3f5f0;
+            --nav-line: #dde4da;
+            --shadow-sm: 0 1px 2px rgba(31, 41, 55, 0.05);
+            --shadow-md: 0 10px 24px rgba(31, 41, 55, 0.08);
+            --radius-sm: 0.35rem;
+            --radius-md: 0.55rem;
+            --radius-lg: 0.8rem;
+
+            --font-display: 'Inter', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+
+            --content: 1480px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f1412;
+            --surface: #161c19;
+            --surface-2: #1c2320;
+            --steel: #232c28;
+            --border: #2d3933;
+            --line: #1f2824;
+            --text: #eef2ec;
+            --muted: #a7b2aa;
+            --teal: #4aa3ad;
+            --teal-deep: #2a7982;
+            --teal-soft: #173238;
+            --nav: #0b100e;
+            --nav-2: #101614;
+            --nav-line: #1c2622;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.24);
+            --shadow-md: 0 12px 26px rgba(0,0,0,0.30);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { -webkit-text-size-adjust: none; text-size-adjust: none; scroll-behavior: smooth; scroll-padding-top: 5rem; }
+        body { min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base); line-height: 1.58; color: var(--text); background: linear-gradient(to right, transparent 0, transparent calc(16.66% - 0.5px), var(--line) calc(16.66% - 0.5px), var(--line) 16.66%, transparent 16.66%, transparent calc(33.33% - 0.5px), var(--line) calc(33.33% - 0.5px), var(--line) 33.33%, transparent 33.33%, transparent calc(50% - 0.5px), var(--line) calc(50% - 0.5px), var(--line) 50%, transparent 50%, transparent calc(66.66% - 0.5px), var(--line) calc(66.66% - 0.5px), var(--line) 66.66%, transparent 66.66%, transparent calc(83.33% - 0.5px), var(--line) calc(83.33% - 0.5px), var(--line) 83.33%, transparent 83.33%), linear-gradient(var(--bg), var(--bg)); }
+
+        a { text-decoration: none; color: inherit; }
+        button, input { font: inherit; color: inherit; }
+        *:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+        .skip-link { position: absolute; left: 1rem; top: -3rem; background: var(--teal); color: #fff; padding: 0.75rem 1rem; z-index: 999; }
+        .skip-link:focus { top: 1rem; }
+
+        .container { max-width: var(--content); margin-inline: auto; padding-inline: var(--space-4); }
+
+        .site-header { position: sticky; top: 0; z-index: 90; background: linear-gradient(180deg, var(--nav), var(--nav-2)); border-bottom: 1px solid var(--nav-line); backdrop-filter: blur(10px); }
+        .header-inner { min-height: 4.6rem; display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-4); align-items: center; }
+
+        .brand { display: flex; align-items: center; gap: var(--space-4); }
+        .logo-box { width: 4rem; height: 2.1rem; border: 1px solid var(--border); background: linear-gradient(180deg, var(--surface), var(--steel)); display: grid; place-items: center; box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 6px rgba(0,0,0,0.08); }
+        .logo-box span { font-family: var(--font-mono); font-size: 1.15rem; letter-spacing: 0.03em; color: var(--text); }
+        .brand-copy strong { display: block; font-family: var(--font-display); font-size: 1.15rem; line-height: 1.02; color: var(--text); font-weight: 700; }
+        .brand-copy span { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); font-family: var(--font-mono); }
+
+        .nav { display: flex; justify-content: center; gap: var(--space-5); flex-wrap: wrap; }
+        .nav a { font-family: var(--font-mono); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+        .nav a:hover { color: var(--text); }
+
+        .theme-toggle { width: 2.7rem; height: 2.7rem; border: 1px solid var(--border); background: transparent; color: var(--text); display: grid; place-items: center; }
+
+        main { padding: var(--space-8) 0 var(--space-16); }
+
+        .top-grid, .section-head, .project-grid, .progress-grid, .daily-template { display: grid; gap: var(--space-5); }
+        .top-grid, .section-head, .progress-grid { grid-template-columns: 0.8fr 1.2fr; }
+        .project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .daily-template { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+        .card, .week-card, .day-card { background: linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0.08)); border: 1px solid var(--border); box-shadow: var(--shadow-sm); border-radius: var(--radius-md); }
+        .card, .week-card, .day-card { padding: var(--space-5); }
+
+        .section { margin-top: var(--space-10); }
+        .section-tag, .micro, .pill { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal); }
+
+        h1, h2, h3, h4 { font-family: var(--font-display); line-height: 0.98; letter-spacing: -0.03em; }
+        h1 { font-size: var(--text-2xl); }
+        h2 { font-size: var(--text-xl); }
+        h3 { font-size: var(--text-lg); }
+        h4 { font-size: 1.05rem; }
+
+        p { color: var(--muted); max-width: 74ch; }
+        .lead { font-size: 1.06rem; color: var(--text); }
+
+        .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+        .metric { padding: var(--space-4); border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05)); border-radius: var(--radius-sm); }
+        .metric strong { display: block; font-size: 1.8rem; line-height: 0.9; }
+        .metric span { display: block; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-family: var(--font-mono); margin-top: 0.4rem; }
+
+        .checklist { list-style: none; display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+        .checklist li { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-3); border: 1px solid rgba(95, 107, 102, 0.16); background: rgba(255,255,255,0.12); border-radius: var(--radius-sm); }
+        .checklist input { width: 1rem; height: 1rem; accent-color: var(--teal); margin-top: 0.25rem; flex: 0 0 auto; }
+        .checklist label { cursor: pointer; }
+        .note { font-size: var(--text-sm); color: var(--muted); margin-top: 0.2rem; }
+
+        .week-grid { display: grid; gap: var(--space-5); }
+        .week-top { display: grid; grid-template-columns: 11rem 1fr 12rem; gap: var(--space-4); align-items: start; margin-bottom: var(--space-5); }
+        .week-badge { display: inline-flex; padding: 0.4rem 0.7rem; border: 1px solid color-mix(in oklab, var(--teal) 28%, var(--border)); background: var(--teal-soft); font-family: var(--font-mono); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--teal); border-radius: var(--radius-full, 9999px); }
+        .deliverable { font-family: var(--font-mono); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.03em; color: var(--text); text-align: right; }
+
+        .days { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--space-4); }
+        .day-card .dayname { font-family: var(--font-mono); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--teal); margin-bottom: var(--space-2); }
+        .slot { margin-top: var(--space-3); }
+        .slot strong { display: block; font-size: var(--text-sm); color: var(--text); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.2rem; }
+
+        .repo-line { margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid rgba(95, 107, 102, 0.18); font-size: var(--text-sm); color: var(--muted); }
+
+        .subgrid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+
+        .meter { height: 1rem; background: rgba(255,255,255,0.18); border: 1px solid var(--border); overflow: hidden; border-radius: 999px; margin-top: var(--space-4); }
+        .meter span { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--teal), #78bcc2); transition: width 0.3s ease; }
+
+        .footer { margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--border); color: var(--muted); }
+
+        @media (max-width: 1220px) {
+            .top-grid, .section-head, .project-grid, .progress-grid, .daily-template, .days, .week-top, .subgrid-2 { grid-template-columns: 1fr; }
+            .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .deliverable { text-align: left; }
+        }
+        @media (max-width: 760px) {
+            .header-inner { grid-template-columns: 1fr; align-items: flex-start; padding: var(--space-3) 0; }
+            .nav { justify-content: flex-start; }
+            .metrics { grid-template-columns: 1fr; }
+            .container { padding-inline: var(--space-3); }
+        }
     </style>
 </head>
-<body class="flex h-screen overflow-hidden">
-    <!-- Sidebar Navigation -->
-    <aside class="w-72 sidebar flex flex-col hidden md:flex">
-        <div class="p-8">
-            <div class="flex items-center gap-3 mb-10">
-                <div class="w-8 h-8 bg-pplx-teal rounded-lg flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+<body>
+    <a href="#content" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="logo-box"><span>pplx</span></div>
+                <div class="brand-copy">
+                    <strong>Summer<br>Engineering<br>Plan</strong>
+                    <span>exact daily execution</span>
                 </div>
-                <h1 class="text-xl font-bold tracking-tight">SUMMER '25</h1>
             </div>
-            <nav class="space-y-1 overflow-y-auto max-h-[calc(100vh-250px)]">
-                <a href="#week1" class="nav-item active flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all">
-                    <span class="w-6 text-center font-mono opacity-40">01</span> Hardware Basics
-                </a>
-                <a href="#week2" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
-                    <span class="w-6 text-center font-mono opacity-40">02</span> Python & Math
-                </a>
-                <a href="#week3" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
-                    <span class="w-6 text-center font-mono opacity-40">03</span> Computer Vision
-                </a>
-                <a href="#week4" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
-                    <span class="w-6 text-center font-mono opacity-40">04</span> Machine Learning
-                </a>
-                <a href="#week5" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
-                    <span class="w-6 text-center font-mono opacity-40">05</span> Embedded Control
-                </a>
-                <a href="#week6" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
-                    <span class="w-6 text-center font-mono opacity-40">06</span> Neural Networks
-                </a>
-                <a href="#week7" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
-                    <span class="w-6 text-center font-mono opacity-40">07</span> Flagship Project
-                </a>
-                <a href="#week8" class="nav-item flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all text-gray-500">
-                    <span class="w-6 text-center font-mono opacity-40">08</span> Shipping/UT Prep
-                </a>
+            <nav class="nav" aria-label="Primary navigation">
+                <a href="#baseline">Baseline</a>
+                <a href="#template">Daily template</a>
+                <a href="#weeks">Weeks</a>
+                <a href="#projects">Projects</a>
+                <a href="#tracker">Tracker</a>
             </nav>
+            <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
         </div>
-        <div class="mt-auto p-8">
-            <div class="bg-white/50 border border-gray-200 rounded-2xl p-4">
-                <p class="text-[10px] text-gray-400 font-mono uppercase mb-1">Status</p>
-                <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 bg-pplx-teal rounded-full"></div>
-                    <p class="text-xs font-bold">READY FOR JUNE 14</p>
+    </header>
+
+    <main id="content" class="container">
+        <section class="top-grid" id="baseline">
+            <article class="card">
+                <div class="section-tag">Operating brief</div>
+                <h1>Insanely specific summer plan.</h1>
+                <p class="lead">This version tells you exactly what to do each weekday, what math topic to study, what Python topic to practice, what project task to execute, what repo to update, and what deliverable should exist at the end of each week.</p>
+                <ul class="checklist">
+                    <li>
+                        <input id="b1" type="checkbox">
+                        <label for="b1"><strong>Default robotics path</strong></label>
+                        <div class="note">Obstacle-avoiding or line-following robot using Arduino-class hardware, motor driver, sensors, and a basic chassis.</div>
+                    </li>
+                    <li>
+                        <input id="b2" type="checkbox">
+                        <label for="b2"><strong>Default AI path</strong></label>
+                        <div class="note">One classical ML project first, then one OpenCV/computer-vision integration project as the flagship.</div>
+                    </li>
+                    <li>
+                        <input id="b3" type="checkbox">
+                        <label for="b3"><strong>Daily commitment</strong></label>
+                        <div class="note">4.5 morning hours max so afternoons stay mostly free.</div>
+                    </li>
+                </ul>
+            </article>
+            <aside class="card">
+                <div class="section-tag">Plan constants</div>
+                <div class="metrics">
+                    <div class="metric"><strong>10</strong><span>Detailed weeks</span></div>
+                    <div class="metric"><strong>50</strong><span>Weekday plans</span></div>
+                    <div class="metric"><strong>3</strong><span>Main repos</span></div>
+                    <div class="metric"><strong>1</strong><span>Portfolio hub</span></div>
                 </div>
+                <ul class="checklist">
+                    <li>
+                        <input id="b4" type="checkbox">
+                        <label for="b4"><strong>Repos you will use</strong></label>
+                        <div class="note">summer-engineering-foundations, summer-robotics-build, summer-ai-build, and summer-portfolio.</div>
+                    </li>
+                    <li>
+                        <input id="b5" type="checkbox">
+                        <label for="b5"><strong>Core software</strong></label>
+                        <div class="note">VS Code, Python 3, Git/GitHub, Arduino IDE, Jupyter, pandas, numpy, scikit-learn, matplotlib, and OpenCV.</div>
+                    </li>
+                    <li>
+                        <input id="b6" type="checkbox">
+                        <label for="b6"><strong>Core parts</strong></label>
+                        <div class="note">Arduino or equivalent board, motor driver, 2 motors, wheels, chassis, battery pack, jumper wires, breadboard, ultrasonic or line sensors, and optional Picamera later.</div>
+                    </li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="section" id="template">
+            <div class="section-head">
+                <div>
+                    <div class="section-tag">Base workday</div>
+                    <h2>Exact daily template</h2>
+                </div>
+                <p>Every weekday follows this structure unless a note says otherwise.</p>
             </div>
-        </div>
-    </aside>
+            <div class="daily-template">
+                <article class="day-card">
+                    <div class="dayname">08:00 – 08:30</div>
+                    <h3>Start-up</h3>
+                    <p>Wake up, eat breakfast, stretch or walk 5–10 minutes, and open only the tools needed for the day.</p>
+                </article>
+                <article class="day-card">
+                    <div class="dayname">08:30 – 09:15</div>
+                    <h3>Math topic</h3>
+                    <p>One exact topic per day, 5–10 practice problems, and one short note on what still feels weak.</p>
+                </article>
+                <article class="day-card">
+                    <div class="dayname">09:15 – 10:00</div>
+                    <h3>Python coding topic</h3>
+                    <p>One exact coding concept per day plus one mini script, notebook cell group, or exercise.</p>
+                </article>
+                <article class="day-card">
+                    <div class="dayname">10:00 – 10:15</div>
+                    <h3>Break</h3>
+                    <p>Stand up, water, no scrolling, and come back with the next project subtask chosen already.</p>
+                </article>
+                <article class="day-card">
+                    <div class="dayname">10:15 – 12:30</div>
+                    <h3>Main build block</h3>
+                    <p>Hardware, AI, CV, debugging, filming, documentation, and repo updates. Final 20–30 minutes always go to notes and commits.</p>
+                </article>
+            </div>
+        </section>
 
-    <!-- Main Content Area -->
-    <main class="flex-1 overflow-y-auto bg-white relative">
-        <div class="max-w-4xl mx-auto px-8 pt-16 pb-32">
-            
-            <header class="mb-20">
-                <h2 class="text-5xl font-black tracking-tighter mb-4 text-pplx-teal">Engineering Roadmap</h2>
-                <p class="text-gray-500 text-lg max-w-2xl leading-relaxed">4-5 hours every morning. A summer of building, breaking, and shipping AI-powered robotics.</p>
-            </header>
+        <section class="section" id="projects">
+            <div class="section-head">
+                <div>
+                    <div class="section-tag">Parts, software, repos</div>
+                    <h2>Exact project stack</h2>
+                </div>
+                <p>This is the default stack the rest of the schedule assumes so you do not have to keep deciding.</p>
+            </div>
+            <div class="project-grid">
+                <article class="card">
+                    <h3>Project 1: Robotics build</h3>
+                    <p><strong>Goal:</strong> one autonomous robot with reliable sensor-based behavior.</p>
+                    <ul class="checklist">
+                        <li>
+                            <input id="p1a" type="checkbox">
+                            <label for="p1a"><strong>Parts</strong></label>
+                            <div class="note">Arduino, motor driver, 2 DC motors, wheels, chassis, caster wheel, battery pack, breadboard, jumper wires, ultrasonic sensor or line sensors, switch, zip ties/hot glue.</div>
+                        </li>
+                        <li>
+                            <input id="p1b" type="checkbox">
+                            <label for="p1b"><strong>Software</strong></label>
+                            <div class="note">Arduino IDE, serial monitor, optional simple CAD sketch or paper sketch.</div>
+                        </li>
+                        <li>
+                            <input id="p1c" type="checkbox">
+                            <label for="p1c"><strong>Repo</strong></label>
+                            <div class="note">summer-robotics-build with folders: code, media, notes, wiring.</div>
+                        </li>
+                        <li>
+                            <input id="p1d" type="checkbox">
+                            <label for="p1d"><strong>Deliverables</strong></label>
+                            <div class="note">Final demo video, wiring photos, code, README, and one lessons-learned section.</div>
+                        </li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Project 2: AI/ML build</h3>
+                    <p><strong>Goal:</strong> one practical Python ML project that goes from raw data to evaluated result.</p>
+                    <ul class="checklist">
+                        <li>
+                            <input id="p2a" type="checkbox">
+                            <label for="p2a"><strong>Software</strong></label>
+                            <div class="note">Python, Jupyter or VS Code notebooks, pandas, numpy, matplotlib, scikit-learn.</div>
+                        </li>
+                        <li>
+                            <input id="p2b" type="checkbox">
+                            <label for="p2b"><strong>Repo</strong></label>
+                            <div class="note">summer-ai-build with folders: data-notes, notebooks, plots, reports.</div>
+                        </li>
+                        <li>
+                            <input id="p2c" type="checkbox">
+                            <label for="p2c"><strong>Deliverables</strong></label>
+                            <div class="note">Notebook or script, comparison of two models, plots, and plain-English explanation.</div>
+                        </li>
+                        <li>
+                            <input id="p2d" type="checkbox">
+                            <label for="p2d"><strong>Default project type</strong></label>
+                            <div class="note">Tabular classification/regression or a simple CV/object-detection prototype.</div>
+                        </li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Project 3: Flagship integration</h3>
+                    <p><strong>Goal:</strong> one project that clearly combines AI/CV thinking with hardware or a visibly real system.</p>
+                    <ul class="checklist">
+                        <li>
+                            <input id="p3a" type="checkbox">
+                            <label for="p3a"><strong>Parts/software</strong></label>
+                            <div class="note">Pi or laptop camera/OpenCV setup, existing robot or actuator system, plus Python/OpenCV.</div>
+                        </li>
+                        <li>
+                            <input id="p3b" type="checkbox">
+                            <label for="p3b"><strong>Repo</strong></label>
+                            <div class="note">summer-flagship-build (or a flagship folder inside summer-ai-build if you want fewer repos).</div>
+                        </li>
+                        <li>
+                            <input id="p3c" type="checkbox">
+                            <label for="p3c"><strong>Deliverables</strong></label>
+                            <div class="note">Stable demo clip, architecture diagram, README, and a short "future improvements" list.</div>
+                        </li>
+                        <li>
+                            <input id="p3d" type="checkbox">
+                            <label for="p3d"><strong>Default flagship</strong></label>
+                            <div class="note">Object-tracking robot, vision-assisted follower, or camera-triggered embedded behavior.</div>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
 
-            <!-- Week 1: Hardware -->
-            <section id="week1" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight">Week 1: Hardware Foundations</h3>
-                    <span class="day-badge bg-pplx-teal text-white">JUNE 14 - JUNE 20</span>
+        <section class="section" id="weeks">
+            <div class="section-head">
+                <div>
+                    <div class="section-tag">Exact day-by-day schedule</div>
+                    <h2>Every week, every weekday</h2>
                 </div>
-                <div class="space-y-6">
-                    <div class="p-8 border-4 border-slate-50 rounded-[40px] bg-slate-50/30">
-                        <div class="space-y-2 mb-8">
-                            <h4 class="text-xl font-bold">Daily Breakdown</h4>
-                            <p class="text-sm text-gray-500 italic">Focus: Electronics, Soldering, and PWM control.</p>
-                        </div>
-                        <div class="grid gap-2">
-                            <div class="step-item">
-                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                                <div><p class="font-bold">Sat/Sun: Components Audit</p><p class="text-sm text-gray-500">Inventory your Arduino/Pi. Order a 3D-printed arm kit or SG90 servos.</p></div>
-                            </div>
-                            <div class="step-item">
-                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                                <div><p class="font-bold">Mon: Linux Orchestration</p><p class="text-sm text-gray-500">Flash Linux Mint. Setup Bash aliases for robotics dev. Install VS Code.</p></div>
-                            </div>
-                            <div class="step-item">
-                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                                <div><p class="font-bold">Tue: Serial Communication</p><p class="text-sm text-gray-500">Send "Hello" from Arduino to PC. Learn Baud rates and Buffer handling.</p></div>
-                            </div>
-                            <div class="step-item">
-                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                                <div><p class="font-bold">Wed: Motor Dynamics</p><p class="text-sm text-gray-500">PWM sweep on SG90 servos. Measure current draw. Add capacitors to stabilize.</p></div>
-                            </div>
-                            <div class="step-item">
-                                <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                                <div><p class="font-bold">Thu-Fri: Sensor Integration</p><p class="text-sm text-gray-500">HC-SR04 Ultrasonic sensor integration. Make servo track your hand distance.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tip-card">
-                        <h5 class="font-bold text-lg mb-2 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            The Pro Tip
-                        </h5>
-                        <p class="text-sm opacity-90 leading-relaxed">Always use a separate power supply for motors (e.g., a 4xAA battery pack). Drawing motor current through an Arduino or Pi is the #1 way to kill your board on Day 3.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Week 2: Math -->
-            <section id="week2" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight">Week 2: Engineering Python & Math</h3>
-                    <span class="day-badge bg-gray-100 text-gray-400">JUNE 21 - JUNE 27</span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div class="p-8 border border-gray-100 rounded-[32px] bg-white hover:bg-slate-50 transition-all">
-                        <h4 class="font-bold mb-4">The Syllabus</h4>
-                        <ul class="space-y-3 text-sm text-gray-600">
-                            <li class="flex items-center gap-2"><div class=\"w-1.5 h-1.5 bg-pplx-teal rounded-full\"></div> NumPy: Matrices are everything</li>
-                            <li class="flex items-center gap-2"><div class=\"w-1.5 h-1.5 bg-pplx-teal rounded-full\"></div> OOP: Class-based Robot control</li>
-                            <li class="flex items-center gap-2"><div class=\"w-1.5 h-1.5 bg-pplx-teal rounded-full\"></div> Calculus: The logic of Gradients</li>
-                        </ul>
-                    </div>
-                    <div class="p-8 border border-gray-100 rounded-[32px] bg-white hover:bg-slate-50 transition-all">
-                        <h4 class="font-bold mb-4">Milestone</h4>
-                        <p class="text-sm text-gray-500 leading-relaxed">By Friday, you should be able to write a script that calculates a 3D coordinate from three joint angles using a rotation matrix.</p>
-                    </div>
-                </div>
-                <div class="tip-card bg-gray-900 shadow-gray-900/20">
-                    <h5 class="font-bold text-lg mb-2">Math Secret</h5>
-                    <p class="text-sm opacity-80">Don't memorize formulas. Understand <strong>Coordinate Frames</strong>. If you can track where a frame is relative to another, you can control any robot.</p>
-                </div>
-            </section>
-
-            <!-- Week 3: CV -->
-            <section id="week3" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight">Week 3: Computer Vision (OpenCV)</h3>
-                    <span class="day-badge bg-pplx-teal text-white">JUNE 28 - JULY 4</span>
-                </div>
-                <div class="space-y-4">
-                    <div class="step-item bg-slate-50/50">
-                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                        <div><p class="font-bold">Color Masking Mastery</p><p class="text-sm text-gray-500">Learn HSV vs RGB. Create a script that isolates a bright red block from a video feed.</p></div>
-                    </div>
-                    <div class="step-item bg-slate-50/50">
-                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                        <div><p class="font-bold">Contour Detection</p><p class="text-sm text-gray-500">Find the centroid (cx, cy) of the block. Draw a bounding box around it in real-time.</p></div>
-                    </div>
-                    <div class="step-item bg-slate-50/50">
-                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                        <div><p class="font-bold">Coordinate Mapping</p><p class="text-sm text-gray-500">Translate 640x480 pixels to centimeters on your desk. This is the CV-to-Robot bridge.</p></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Week 4: ML -->
-            <section id="week4" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight">Week 4: Machine Learning foundations</h3>
-                    <span class="day-badge bg-gray-100 text-gray-400">JULY 5 - JULY 11</span>
-                </div>
-                <div class="p-10 border border-gray-100 rounded-[40px] bg-slate-50/20">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <p>The schedule below is intentionally literal. If you want to stop deciding what to do each day, follow it in order and only adjust if parts are missing.</p>
+            </div>
+            <div class="week-grid">
+                <!-- Week 1 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 1: June 14–20</div>
                         <div>
-                            <h4 class="font-bold text-lg mb-4">Framework: Scikit-Learn</h4>
-                            <p class="text-sm text-gray-500 leading-relaxed mb-6">Train your first model. Regression and Random Forests are the bread and butter of engineering ML.</p>
-                            <div class="space-y-2">
-                                <div class="flex items-center gap-2 text-xs"><div class=\"w-2 h-2 border border-pplx-teal rounded-full\"></div> Feature Scaling</div>
-                                <div class="flex items-center gap-2 text-xs"><div class=\"w-2 h-2 border border-pplx-teal rounded-full\"></div> Train-Test Split</div>
-                                <div class="flex items-center gap-2 text-xs"><div class=\"w-2 h-2 border border-pplx-teal rounded-full\"></div> Cross Validation</div>
-                            </div>
+                            <h3>Setup, diagnostics, and repo creation</h3>
+                            <p>Purpose: remove setup friction, find weak spots, and lock project choices before any serious build starts.</p>
                         </div>
-                        <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
-                            <h5 class="text-xs font-mono uppercase text-gray-400 mb-4">Weekly Lab</h5>
-                            <p class="text-sm font-bold mb-2">The \"Robot Health\" Predictor</p>
-                            <p class="text-xs text-gray-500 leading-relaxed">Simulate a dataset of motor temperature vs. load. Train a model to predict if a motor will fail within 1 hour.</p>
+                        <div class="deliverable">deliverable:<br>4 repos ready + workspace</div>
+                    </div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Clean and diagnose</h4>
+                            <div class="slot"><strong>Math</strong><p>Functions review: notation, evaluation, domain/range, graph reading, and 6–8 practice problems.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Variables, types, input/output, and one tiny script for unit conversion.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Clear your desk, sort components, charge batteries, find cables, and test that your laptop can connect to your board.</p></div>
+                            <div class="repo-line">Repo update: create <strong>summer-engineering-foundations</strong>.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Install and verify</h4>
+                            <div class="slot"><strong>Math</strong><p>Quadratics review: factoring, vertex form, and graph interpretation.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Conditionals and comparison operators: write a grade-classifier script.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Install/check Python packages, VS Code extensions, Git, Arduino IDE, and verify serial output from the board.</p></div>
+                            <div class="repo-line">Repo update: create <strong>summer-robotics-build</strong> and <strong>summer-ai-build</strong>.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Choose projects</h4>
+                            <div class="slot"><strong>Math</strong><p>Exponents and logs basics.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Loops: write a loop-based menu script.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Choose robotics project and choose AI project. Write both success conditions in one sentence each.</p></div>
+                            <div class="repo-line">Repo update: add README outlines and folders.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Part audit and sketches</h4>
+                            <div class="slot"><strong>Math</strong><p>Sequences and patterns.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Functions: rewrite earlier scripts using functions.</p></div>
+                            <div class="slot"><strong>Build</strong><p>List all parts you already own, all missing parts, and sketch the robot layout and wiring flow.</p></div>
+                            <div class="repo-line">Deliverable: parts list markdown file.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Baseline capture</h4>
+                            <div class="slot"><strong>Math</strong><p>Review weak topics from the week for 30 minutes only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Git basics: init, add, commit, push.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Take workspace photos, save initial notes, and write Week 2 goals.</p></div>
+                            <div class="repo-line">Deliverable: week-1-status.md.</div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </article>
 
-            <!-- Week 5: Embedded Control -->
-            <section id="week5" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight">Week 5: Embedded Intelligence</h3>
-                    <span class="day-badge bg-pplx-teal text-white">JULY 12 - JULY 18</span>
-                </div>
-                <div class="space-y-6">
-                    <div class="step-item border border-gray-100">
-                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                        <div><p class="font-bold">PID Control Loops</p><p class="text-sm text-gray-500">Implement a Proportional-Integral-Derivative controller for smooth servo movement. No more jerky starts.</p></div>
+                <!-- Week 2 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 2: June 21–27</div>
+                        <div>
+                            <h3>Robot chassis, movement, and sensor basics</h3>
+                            <p>Purpose: the robot should physically exist and move correctly by the end of this week.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>moving robot base</div>
                     </div>
-                    <div class="step-item border border-gray-100">
-                        <input type="checkbox" class="w-5 h-5 rounded-md mt-1">
-                        <div><p class="font-bold">Socket Programming</p><p class="text-sm text-gray-500">Control your Arduino from a Python script via Wi-Fi (ESP32) or USB Serial.</p></div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Mechanical assembly</h4>
+                            <div class="slot"><strong>Math</strong><p>Trig ratios intro: sine, cosine, tangent basics.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Lists and indexing: write a sensor-value list analyzer.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Assemble chassis, mount motors, attach wheels, and decide board placement.</p></div>
+                            <div class="repo-line">Media: take 2 assembly photos.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Motor driver day</h4>
+                            <div class="slot"><strong>Math</strong><p>Trig problem practice.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Dictionaries: make a simple mapping from sensor state to action.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Wire motor driver, write forward/backward/turn code, and test each command separately.</p></div>
+                            <div class="repo-line">Code: motortest.ino or equivalent.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Power stability day</h4>
+                            <div class="slot"><strong>Math</strong><p>Angles, radians vs degrees overview (if possible).</p></div>
+                            <div class="slot"><strong>Python</strong><p>File IO basics: save fake run data to a text file.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Fix resets, weak power, loose connections, and make movement consistent.</p></div>
+                            <div class="repo-line">Note: record every bug and fix.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Sensor read day</h4>
+                            <div class="slot"><strong>Math</strong><p>Function graphs review (if trig gets tiring).</p></div>
+                            <div class="slot"><strong>Python</strong><p>Classes basics: make a tiny RobotState class.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Connect ultrasonic or line sensors and print raw readings to serial.</p></div>
+                            <div class="repo-line">Code: sensortest file saved and documented.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Movement proof</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Commit discipline: cleaner commit messages.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Record a clip showing the robot moving on command and save wiring images.</p></div>
+                            <div class="repo-line">Deliverable: moving-base demo clip.</div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </article>
 
-            <!-- Week 6: Deep Learning -->
-            <section id="week6" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight">Week 6: Neural Networks (PyTorch)</h3>
-                    <span class="day-badge bg-gray-100 text-gray-400">JULY 19 - JULY 25</span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-6 bg-slate-50 border border-gray-100 rounded-2xl text-center">
-                        <div class="font-bold text-xl mb-1">PyTorch</div>
-                        <div class="text-[10px] uppercase text-gray-400">Framework</div>
-                        <p class="text-xs mt-3 text-gray-500">Learn Tensors and Autograd. The core of modern AI.</p>
+                <!-- Week 3 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 3: June 28–July 4</div>
+                        <div>
+                            <h3>Autonomous behavior implementation</h3>
+                            <p>Purpose: convert a moving base into a real autonomous system.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>first autonomous runs</div>
                     </div>
-                    <div class="p-6 bg-slate-50 border border-gray-100 rounded-2xl text-center">
-                        <div class="font-bold text-xl mb-1">CNNs</div>
-                        <div class="text-[10px] uppercase text-gray-400">Architecture</div>
-                        <p class="text-xs mt-3 text-gray-500">How AI \"sees\" layers of patterns. Build a digit classifier.</p>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Main control loop</h4>
+                            <div class="slot"><strong>Math</strong><p>Vectors basics and directional thinking.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Boolean logic and chained conditions.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Write the "read-decide-act" loop using your sensor values and motor commands.</p></div>
+                            <div class="repo-line">Code: mainbehavior file committed.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Threshold tuning</h4>
+                            <div class="slot"><strong>Math</strong><p>Absolute value and piecewise thinking if needed for thresholds.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Looping through trial results and printing summaries.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Test multiple threshold values and note what makes the robot behave better or worse.</p></div>
+                            <div class="repo-line">Data: trial table saved in notes.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Recovery behavior</h4>
+                            <div class="slot"><strong>Math</strong><p>Domain/range and edge cases refresher.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Functions returning state/action values.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Add behavior for sensor loss, close obstacles, or missed lines.</p></div>
+                            <div class="repo-line">Commit: recovery logic added.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Repeatability tests</h4>
+                            <div class="slot"><strong>Math</strong><p>Simple statistics: average, success rate, percent.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Calculate success rate from a list of trial results.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Run 10 trials, log success/failure, and identify the most common failure mode.</p></div>
+                            <div class="repo-line">Deliverable: test log and success rate.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Autonomy clip</h4>
+                            <div class="slot"><strong>Math</strong><p>Light review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Clean one mini script and push it.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Film the best autonomous run and write what still needs polishing next week.</p></div>
+                            <div class="repo-line">Deliverable: first autonomous demo.</div>
+                        </div>
                     </div>
-                    <div class="p-6 bg-slate-50 border border-gray-100 rounded-2xl text-center">
-                        <div class="font-bold text-xl mb-1">Transfer</div>
-                        <div class="text-[10px] uppercase text-gray-400">Technique</div>
-                        <p class="text-xs mt-3 text-gray-500">Use pre-trained models (YOLO) to detect your specific tools.</p>
-                    </div>
-                </div>
-            </section>
+                </article>
 
-            <!-- Week 7: Flagship Project -->
-            <section id="week7" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight text-pplx-teal">Week 7: The Master Integration</h3>
-                    <span class="day-badge bg-pplx-teal text-white">JULY 26 - AUG 1</span>
-                </div>
-                <div class="p-10 border-4 border-pplx-teal rounded-[40px] bg-pplx-teal/5 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-8 opacity-10">
-                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                <!-- Week 4 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 4: July 5–11</div>
+                        <div>
+                            <h3>Robot polish, documentation, and closure</h3>
+                            <p>Purpose: finish the robotics project enough that it becomes a clean portfolio piece.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>finished robotics project</div>
                     </div>
-                    <h4 class="text-2xl font-black mb-6">The \"Bridge\" Project</h4>
-                    <p class="text-gray-600 mb-10 leading-relaxed text-lg">Your flagship project: A CV-driven system where a camera detects a block, calculates coordinates, and the robotic arm picks it up autonomously.</p>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <div class="font-bold mb-2">1. Detection</div>
-                            <p class="text-xs text-gray-500 leading-normal">HSV masking to centroid (cx, cy).</p>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Mechanical cleanup</h4>
+                            <div class="slot"><strong>Math</strong><p>Trig practice or weak-topic cleanup.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Refactoring basics: rename bad variable names in an old script.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Improve wire management, mounting, and general durability.</p></div>
+                            <div class="repo-line">Media: before/after photos.</div>
                         </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <div class="font-bold mb-2">2. Kinematics</div>
-                            <p class="text-xs text-gray-500 leading-normal">Solve the inverse trig for joint angles.</p>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Code cleanup</h4>
+                            <div class="slot"><strong>Math</strong><p>Function behavior review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Modules/imports basics.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Split robotics code into readable sections/functions and add useful comments.</p></div>
+                            <div class="repo-line">Commit: cleaned control code.</div>
                         </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                            <div class="font-bold mb-2">3. Actuation</div>
-                            <p class="text-xs text-gray-500 leading-normal">Command servos to the XYZ point.</p>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Judge test</h4>
+                            <div class="slot"><strong>Math</strong><p>Quick mixed-problem set.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Error handling: try/except intro.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Run the robot as if you were demoing to someone else, with no "hidden" resets or retries.</p></div>
+                            <div class="repo-line">Note: every remaining failure case.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>README day</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Markdown basics (if needed).</p></div>
+                            <div class="slot"><strong>Build</strong><p>Write README sections: overview, parts, wiring, algorithm, test results, and improvements.</p></div>
+                            <div class="repo-line">Deliverable: complete robotics README.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Final robot package</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>No new topic: package files.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Record final footage, organize folders, and mark project 1 complete.</p></div>
+                            <div class="repo-line">Deliverable: final robot folder + demo.</div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </article>
 
-            <!-- Week 8: Shipping -->
-            <section id="week8" class="mb-32">
-                <div class="flex items-center justify-between mb-10">
-                    <h3 class="text-3xl font-black tracking-tight">Week 8: Shipping & UT Austin Prep</h3>
-                    <span class="day-badge bg-gray-900 text-white">AUG 2 - AUG 8</span>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="p-8 border border-gray-200 rounded-3xl hover:bg-slate-50 transition-all">
-                        <h4 class="font-bold text-xl mb-4 text-pplx-teal">README Excellence</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-6">Every project needs a GIF of it working, a circuit diagram (Fritzing), and a \"Lessons Learned\" section. This is your portfolio's front door.</p>
-                        <div class="flex gap-2">
-                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">portfolio</span>
-                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">documentation</span>
+                <!-- Week 5 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 5: July 12–18</div>
+                        <div>
+                            <h3>AI/ML workflow setup and dataset work</h3>
+                            <p>Purpose: learn the real machine-learning pipeline, not just tutorials.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>clean dataset + baseline notebook</div>
+                    </div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Select ML task</h4>
+                            <div class="slot"><strong>Math</strong><p>Statistics basics: mean, median, mode, outliers.</p></div>
+                            <div class="slot"><strong>Python</strong><p>pandas DataFrame basics.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Choose one dataset and define the prediction/classification target clearly.</p></div>
+                            <div class="repo-line">Notebook: data-exploration.ipynb.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Inspect the data</h4>
+                            <div class="slot"><strong>Math</strong><p>Spread and variance conceptually.</p></div>
+                            <div class="slot"><strong>Python</strong><p>DataFrame filtering, selection, and summary methods.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Inspect columns, missing values, label distribution, and weird rows.</p></div>
+                            <div class="repo-line">Save a data-issues note.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Cleaning day</h4>
+                            <div class="slot"><strong>Math</strong><p>Percentages and ratios refresher.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Handling missing values and simple preprocessing.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Clean the dataset, encode categories if needed, and decide what features to keep.</p></div>
+                            <div class="repo-line">Commit: cleaned notebook.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Train/test split baseline</h4>
+                            <div class="slot"><strong>Math</strong><p>Probability intuition basics.</p></div>
+                            <div class="slot"><strong>Python</strong><p>scikit-learn fit/predict workflow.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Split train/test and run at least one baseline model.</p></div>
+                            <div class="repo-line">Deliverable: first baseline result.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Second baseline</h4>
+                            <div class="slot"><strong>Math</strong><p>Light statistics review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Plotting basics with matplotlib.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Train a second model and compare results in a simple table.</p></div>
+                            <div class="repo-line">Deliverable: baseline-comparison note.</div>
                         </div>
                     </div>
-                    <div class="p-8 border border-gray-200 rounded-3xl hover:bg-slate-50 transition-all">
-                        <h4 class="font-bold text-xl mb-4 text-pplx-teal">The \"Demo\" Reel</h4>
-                        <p class="text-gray-500 text-sm leading-relaxed mb-6">Record a 90-second technical breakdown. Explain your PID logic or CV math. This is gold for college/internship apps.</p>
-                        <div class="flex gap-2">
-                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">ut-austin-prep</span>
-                            <span class=\"text-[10px] bg-white border px-2 py-1 rounded-md font-mono\">resume-builder</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </article>
 
-        </div>
+                <!-- Week 6 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 6: July 19–25</div>
+                        <div>
+                            <h3>AI project completion and explanation</h3>
+                            <p>Purpose: finish the standalone AI project clearly before integrating AI with hardware.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>finished AI project</div>
+                    </div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Feature improvement</h4>
+                            <div class="slot"><strong>Math</strong><p>Basic correlation/intuitive relationships.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Feature engineering basics in pandas.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Try one or two reasonable feature improvements or preprocessing tweaks.</p></div>
+                            <div class="repo-line">Note: keep track of what changed.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Model comparison</h4>
+                            <div class="slot"><strong>Math</strong><p>Precision/recall intuition or "error thinking."</p></div>
+                            <div class="slot"><strong>Python</strong><p>Metrics functions in scikit-learn.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Compare at least two models and explain why one is better for this problem.</p></div>
+                            <div class="repo-line">Deliverable: metrics table.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Visuals day</h4>
+                            <div class="slot"><strong>Math</strong><p>Graph interpretation.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Confusion matrix or scatter/bar plot basics.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Create 2–3 visuals showing results or data behavior.</p></div>
+                            <div class="repo-line">Save plots to /plots.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Explainability day</h4>
+                            <div class="slot"><strong>Math</strong><p>Short mixed review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Write cleaner notebook markdown and comments.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Write a plain-English explanation of the project and its limits.</p></div>
+                            <div class="repo-line">Deliverable: report.md.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Publish AI project</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>No new topic: packaging only.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Clean notebook/script, push repo, and save screenshots for your future portfolio page.</p></div>
+                            <div class="repo-line">Deliverable: finished AI repo state.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Week 7 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 7: July 26–August 1</div>
+                        <div>
+                            <h3>Flagship planning and CV environment setup</h3>
+                            <p>Purpose: define and de-risk the final combined project before building it.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>flagship architecture + test environment</div>
+                    </div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Choose flagship</h4>
+                            <div class="slot"><strong>Math</strong><p>Coordinate plane and geometry review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>OpenCV install/check or camera-capture basics.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Choose final flagship: object tracker, CV-guided robot, or camera-triggered embedded action system.</p></div>
+                            <div class="repo-line">Create flagship repo/folder.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Define minimum viable demo</h4>
+                            <div class="slot"><strong>Math</strong><p>Rates/change intuition.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Reading frames, displaying frames, and quitting cleanly.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Write the one-sentence minimum demo and list inputs, processing, and outputs.</p></div>
+                            <div class="repo-line">Deliverable: architecture.md.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Camera and CV test</h4>
+                            <div class="slot"><strong>Math</strong><p>Angles and orientation review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Basic image operations with OpenCV.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Verify camera feed, frame rate, lighting conditions, and simple detection or color tracking.</p></div>
+                            <div class="repo-line">Save one working CV test script.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Output/control test</h4>
+                            <div class="slot"><strong>Math</strong><p>Thresholds and inequality logic practice.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Serial communication or messaging basics if using hardware output.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Test how the software will trigger a robot action, state change, or output signal.</p></div>
+                            <div class="repo-line">Commit: input/output tests.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Scope cut day</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Code cleanup only.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Remove any feature that is not necessary for the demo.</p></div>
+                            <div class="repo-line">Deliverable: narrowed project scope.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Week 8 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 8: August 2–8</div>
+                        <div>
+                            <h3>Flagship prototype week</h3>
+                            <p>Purpose: build the first end-to-end version, even if ugly.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>prototype works end-to-end once</div>
+                    </div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Input pipeline</h4>
+                            <div class="slot"><strong>Math</strong><p>Short mixed review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Frame loops and basic preprocessing.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Get stable camera/sensor input into the flagship script.</p></div>
+                            <div class="repo-line">Commit: input pipeline.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Detection/tracking core</h4>
+                            <div class="slot"><strong>Math</strong><p>Coordinate comparisons and simple geometry intuition.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Contours, bounding boxes, thresholds, or whichever CV method you use.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Make the system detect or track the target condition.</p></div>
+                            <div class="repo-line">Save screenshots of working frames.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Decision logic</h4>
+                            <div class="slot"><strong>Math</strong><p>Logical conditions review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>State machine basics in code.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Translate detection output into a simple action or response.</p></div>
+                            <div class="repo-line">Commit: decision layer.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Full chain test</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Logging and debugging output.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Run the entire "input process output" chain and list every failure case.</p></div>
+                            <div class="repo-line">Deliverable: first full-chain demo.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Capture the "ugly" win</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>No new topic.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Film the first working prototype before touching anything else.</p></div>
+                            <div class="repo-line">Media: prototype-proof clip.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Week 9 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 9: August 9–15</div>
+                        <div>
+                            <h3>Flagship reliability and polish</h3>
+                            <p>Purpose: make the flagship feel "real" instead of lucky.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>stable flagship + demo docs</div>
+                    </div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Tune performance</h4>
+                            <div class="slot"><strong>Math</strong><p>Percent error and rates if useful.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Parameter organization and constants cleanup.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Tune thresholds, delays, confidence, motor outputs, or reaction logic.</p></div>
+                            <div class="repo-line">Save tuned parameter notes.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Edge-case testing</h4>
+                            <div class="slot"><strong>Math</strong><p>Short mixed review.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Assertions/checks and "sanity" logging.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Test bad lighting, odd angles, and weird user behavior. Write each failure case.</p></div>
+                            <div class="repo-line">Deliverable: failure-modes.md.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Physical/system polish</h4>
+                            <div class="slot"><strong>Math</strong><p>Only if needed (otherwise use the slot for backlog cleanup).</p></div>
+                            <div class="slot"><strong>Python</strong><p>Code cleanup and function splitting.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Improve mounting, labels, interface clarity, and general presentation.</p></div>
+                            <div class="repo-line">Media: clean build photos.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Diagram and README</h4>
+                            <div class="slot"><strong>Math</strong><p>Short review only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>No new topic: packaging only.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Write architecture, flow, files, setup, and how the flagship works.</p></div>
+                            <div class="repo-line">Deliverable: flagship README + diagram.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Final flagship demo</h4>
+                            <div class="slot"><strong>Math</strong><p>Optional only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>No new topic.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Record your clean final flagship demo and mark the project complete.</p></div>
+                            <div class="repo-line">Deliverable: final flagship video.</div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Week 10 -->
+                <article class="week-card">
+                    <div class="week-top">
+                        <div class="week-badge">Week 10: August 16–school start</div>
+                        <div>
+                            <h3>Portfolio, cleanup, and fall transition</h3>
+                            <p>Purpose: package the summer into something you can actually use later.</p>
+                        </div>
+                        <div class="deliverable">deliverable:<br>portfolio hub + archived summer</div>
+                    </div>
+                    <div class="days">
+                        <div class="day-card">
+                            <div class="dayname">Monday</div>
+                            <h4>Repo cleanup day</h4>
+                            <div class="slot"><strong>Math</strong><p>Short diagnostic: what still feels weak going into junior year?</p></div>
+                            <div class="slot"><strong>Python</strong><p>Short review: which topics now feel strong vs weak?</p></div>
+                            <div class="slot"><strong>Build</strong><p>Rename files, remove junk, fix README formatting, and standardize folders.</p></div>
+                            <div class="repo-line">Repos: all cleaned.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Tuesday</div>
+                            <h4>Portfolio hub day</h4>
+                            <div class="slot"><strong>Math</strong><p>Optional only.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Basic HTML/markdown cleanup if needed.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Create one hub page showing the robot build, AI project, and flagship project with media.</p></div>
+                            <div class="repo-line">Repo: summer-portfolio.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Wednesday</div>
+                            <h4>Reflection day</h4>
+                            <div class="slot"><strong>Math</strong><p>List next-year math topics to stay ahead on.</p></div>
+                            <div class="slot"><strong>Python</strong><p>List next-year coding topics to improve.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Write one paragraph each on what got easier, what stayed hard, and what you want to build next.</p></div>
+                            <div class="repo-line">Deliverable: reflection.md.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Thursday</div>
+                            <h4>Archive and backup</h4>
+                            <div class="slot"><strong>Math</strong><p>No formal work needed.</p></div>
+                            <div class="slot"><strong>Python</strong><p>No new topic.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Back up all videos, screenshots, code, CAD, and notes to cloud + local organized folders.</p></div>
+                            <div class="repo-line">Deliverable: complete archive folder.</div>
+                        </div>
+                        <div class="day-card">
+                            <div class="dayname">Friday</div>
+                            <h4>Launch into junior year</h4>
+                            <div class="slot"><strong>Math</strong><p>Pick 1 fall math maintenance habit.</p></div>
+                            <div class="slot"><strong>Python</strong><p>Pick 1 fall coding maintenance habit.</p></div>
+                            <div class="slot"><strong>Build</strong><p>Write 3 fall goals: one robotics/AI goal, one academic goal, and one portfolio/career goal.</p></div>
+                            <div class="repo-line">Deliverable: fall-goals.md.</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="tracker">
+            <div class="section-head">
+                <div>
+                    <div class="section-tag">Inspection panel</div>
+                    <h2>Progress tracker</h2>
+                </div>
+                <p>Checkboxes update for the current session so you can use this as a real working checklist.</p>
+            </div>
+            <div class="progress-grid">
+                <article class="card">
+                    <h3><span id="doneCount">0</span> / <span id="totalCount">0</span> checks complete</h3>
+                    <div class="meter"><span id="progressBar"></span></div>
+                    <p style="margin-top: var(--space-4)">If you fall behind, cut optional polish before cutting the core deliverable.</p>
+                </article>
+                <article class="card">
+                    <h3>End-of-summer acceptance test</h3>
+                    <ul class="checklist">
+                        <li>
+                            <input id="end1" type="checkbox">
+                            <label for="end1"><strong>Robot project complete and demoable</strong></label>
+                        </li>
+                        <li>
+                            <input id="end2" type="checkbox">
+                            <label for="end2"><strong>AI project complete and explainable</strong></label>
+                        </li>
+                        <li>
+                            <input id="end3" type="checkbox">
+                            <label for="end3"><strong>Flagship integration build complete</strong></label>
+                        </li>
+                        <li>
+                            <input id="end4" type="checkbox">
+                            <label for="end4"><strong>Portfolio hub finished and organized</strong></label>
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <footer class="footer">
+            This version expands the site into an exact day-by-day execution document with math, Python, project tasks, repos, software, parts, and deliverables.
+        </footer>
     </main>
 
-    <!-- Footer Progress -->
-    <footer class="fixed bottom-0 right-0 p-8 z-50">
-        <div class="bg-white/90 backdrop-blur border border-gray-200 shadow-2xl rounded-2xl px-6 py-4 flex items-center gap-6">
-            <div class="flex -space-x-2">
-                <div class="w-6 h-6 rounded-full bg-pplx-teal border-2 border-white"></div>
-                <div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white"></div>
-                <div class="w-6 h-6 rounded-full bg-slate-100 border-2 border-white"></div>
-            </div>
-            <div class="text-[10px] font-mono uppercase tracking-widest text-gray-400">Progress: <span class="text-black font-bold">Planning Phase</span></div>
-            <div class="h-4 w-px bg-gray-200"></div>
-            <div class="text-[10px] font-mono text-gray-400">© 2025 ENGINEERING INTENSIVE</div>
-        </div>
-    </footer>
-
     <script>
-        // Smooth highlighting for sidebar
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
+        // Theme toggle logic
+        const root = document.documentElement;Expand site into day-by-day execution document with math and Python tracks
+        const toggle = document.querySelector('[data-theme-toggle]');
+        let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href').includes(current)) {
-                    item.classList.add('active');
-                }
-            });
+        const icons = {
+            dark: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>`,
+            light: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`
+        };
+
+        const apply = () => {
+            root.setAttribute('data-theme', theme);
+            toggle.innerHTML = icons[theme];
+            toggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+        };
+
+        apply();
+
+        toggle.addEventListener('click', () => {
+            theme = theme === 'dark' ? 'light' : 'dark';
+            apply();
         });
+
+        // Tracker logic
+        const checks = [...document.querySelectorAll('input[type="checkbox"]')];
+        const done = document.getElementById('doneCount');
+        const total = document.getElementById('totalCount');
+        const bar = document.getElementById('progressBar');
+
+        const update = () => {
+            const complete = checks.filter(cc => cc.checked).length;
+            done.textContent = complete;
+            total.textContent = checks.length;
+            bar.style.width = (complete / checks.length) * 100 + '%';
+        };
+
+        checks.forEach(cc => cc.addEventListener('change', update));
+        update();
     </script>
 </body>
 </html>
