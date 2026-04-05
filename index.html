@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Engineering Roadmap 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        perplexity: {
+                            bg: '#ffffff',
+                            sidebar: '#f3f3ee',
+                            accent: '#1d9bf0',
+                            text: '#1a1a1a',
+                            subtle: '#6b7280',
+                            card: '#ffffff',
+                            border: '#e5e7eb',
+                            teal: '#1a948e'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1a1a1a; }
+        .sidebar { background-color: #f3f3ee; border-right: 1px solid #e5e7eb; }
+        .checkbox-custom:checked { background-color: #1a948e; border-color: #1a948e; }
+        .nav-item:hover { background-color: #e5e7eb; }
+        .nav-item.active { background-color: #e5e7eb; font-weight: 600; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <aside class="w-64 sidebar flex flex-col hidden md:flex">
+        <div class="p-6">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                <span class="text-perplexity-teal">●</span> Roadmap
+            </h1>
+        </div>
+        <nav class="flex-1 px-3 space-y-1">
+            <a href="#setup" class="nav-item active flex items-center px-3 py-2 text-sm rounded-lg">Setup & Foundations</a>
+            <a href="#phase1" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Phase 1: Robotics</a>
+            <a href="#phase2" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Phase 2: AI & ML</a>
+            <a href="#phase3" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Phase 3: Flagship</a>
+            <a href="#portfolio" class="nav-item flex items-center px-3 py-2 text-sm rounded-lg">Portfolio & Beyond</a>
+        </nav>
+        <div class="p-6 border-t border-gray-200">
+            <div class="text-xs text-gray-500 font-mono">EST. START: JUNE 14, 2025</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto bg-white p-8 md:p-12">
+        <div class="max-w-3xl mx-auto">
+            <header class="mb-12">
+                <div class="text-perplexity-teal font-mono text-sm mb-2 uppercase tracking-widest">Engineering Intensive</div>
+                <h2 class="text-4xl font-bold mb-4">Summer Plan: AI & Robotics</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">A focused 4-5 hour morning routine to master embedded systems, machine learning, and hardware-software integration.</p>
+            </header>
+
+            <!-- Daily Routine -->
+            <section class="mb-16">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <svg class="w-6 h-6 text-perplexity-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    The Morning Block (4.5 Hours)
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">08:30</div>
+                        <div>
+                            <div class="font-bold">Math Foundation (45m)</div>
+                            <p class="text-sm text-gray-500">Algebra II cleanup (June) → Precalculus (July/Aug). Focus: Trig & Vectors.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">09:15</div>
+                        <div>
+                            <div class="font-bold">CS Core (45m)</div>
+                            <p class="text-sm text-gray-500">Python fundamentals, Numpy/Pandas. C/C++ for robotics firmware (Thursdays).</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">10:15</div>
+                        <div>
+                            <div class="font-bold">Deep Work: Project Build (1h 45m)</div>
+                            <p class="text-sm text-gray-500">Active engineering, wiring, training models, and debugging.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 border border-gray-100 rounded-xl hover:bg-gray-50 transition-colors">
+                        <div class="font-mono text-perplexity-teal font-bold pt-1 whitespace-nowrap">12:00</div>
+                        <div>
+                            <div class="font-bold">Ship & Logs (30m)</div>
+                            <p class="text-sm text-gray-500">Documentation, GitHub commits, and recording short demo clips.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 1 -->
+            <section id="phase1" class="mb-16">
+                <h3 class="text-2xl font-bold mb-6">Phase 1: Robotics & Embedded (June 14 - July 11)</h3>
+                <div class="space-y-8">
+                    <div class="border-l-2 border-perplexity-teal pl-6 py-2">
+                        <h4 class="font-bold text-lg mb-2">Weeks 1-2: Intermediate Autonomous Bot</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Order/Inventory parts (Arduino/Pi, Motor Drivers, Sensors)</li>
+                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Assemble chassis and wiring</li>
+                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Implement PID control for line following</li>
+                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Final Test: Obstacle avoidance logic</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-2 border-perplexity-teal pl-6 py-2">
+                        <h4 class="font-bold text-lg mb-2">Weeks 3-4: The Showpiece Build</h4>
+                        <p class="text-sm text-gray-500 mb-4 italic">Recommended: Self-balancing bot or Robotic Arm with Kinematics.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> CAD frame (Fusion 360) / 3D Print components</li>
+                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Integration of IMU/Gyro sensors</li>
+                            <li class="flex items-center gap-2"><input type="checkbox" class="checkbox-custom rounded w-4 h-4"> Tuning software loops for stability</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 2 -->
+            <section id="phase2" class="mb-16">
+                <h3 class="text-2xl font-bold mb-6">Phase 2: AI & ML Intensive (July 12 - Aug 10)</h3>
+                <div class="bg-perplexity-sidebar p-6 rounded-2xl border border-perplexity-border">
+                    <h4 class="font-bold text-lg mb-4">ML Curriculum</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-white rounded-xl border border-gray-100">
+                            <div class="font-bold text-perplexity-teal mb-1">Fundamentals</div>
+                            <p class="text-sm text-gray-500">Regression, Decision Trees, Scikit-learn, Feature Engineering.</p>
+                        </div>
+                        <div class="p-4 bg-white rounded-xl border border-gray-100">
+                            <div class="font-bold text-perplexity-teal mb-1">Computer Vision</div>
+                            <p class="text-sm text-gray-500">OpenCV, Object Detection, Yolo/Haar Cascades for robotics integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Packaging -->
+            <section id="portfolio" class="mb-16">
+                <h3 class="text-2xl font-bold mb-6">Portfolio Packaging (Final Week)</h3>
+                <div class="p-6 border border-perplexity-teal rounded-2xl bg-perplexity-teal/5">
+                    <p class="text-gray-700 mb-4 font-medium">Final Deliverables to build your profile for UT Austin / Internships:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-perplexity-teal"></div>
+                            <span class="text-gray-700">Clean GitHub Repos with proper READMEs</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-perplexity-teal"></div>
+                            <span class="text-gray-700">30-second "Technical Summary" videos per project</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-perplexity-teal"></div>
+                            <span class="text-gray-700">Simple Personal Portfolio site (Static HTML/Vercel)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
